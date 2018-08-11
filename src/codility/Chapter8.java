@@ -63,7 +63,7 @@ public class Chapter8 {
      * Worst case time complexity: O(n log n).
      * Reason: Utilizes the Arrays#sort function which sorts in O(l log n).
      *
-     * Pro:
+     * Pros:
      * - Uses far less space than the original implementation.
      * - It makes use of no additional data structures besides the original array hence
      *   less overhead due to function calls, etc.
