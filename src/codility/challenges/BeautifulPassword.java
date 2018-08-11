@@ -1,3 +1,5 @@
+package codility.challenges;
+
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 

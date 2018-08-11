@@ -1,5 +1,9 @@
 package codility;
 
+import java.util.function.IntSupplier;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 /**
  * @author Iyanu Adelekan on 11/08/2018.
  *
@@ -22,7 +26,7 @@ public class Chapter9 {
     private static int maxSlice(int[] a) {
         int maxSlice = 0;
         int maxEnding = 0;
-
+        int[] arr = new int[4];
         for (int e : a) {
             maxEnding = Math.max(0, maxEnding + e);
             maxSlice = Math.max(maxSlice, maxEnding);
