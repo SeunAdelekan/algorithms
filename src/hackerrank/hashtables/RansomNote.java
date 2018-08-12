@@ -15,7 +15,7 @@ public class RansomNote {
     }
 
     /**
-     * Solution to ransom note problem.
+     * Solution to ransom note problem utilising a HashMap.
      * Worst case time complexity: O(n * m).
      *
      * @param magazine - the magazine
