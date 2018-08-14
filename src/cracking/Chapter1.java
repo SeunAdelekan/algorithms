@@ -1,7 +1,10 @@
 package cracking;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.IntStream;
 
 /**
  * Solutions to Cracking the Coding Interview questions on Chapter 1: Arrays and Strings
@@ -14,6 +17,7 @@ public class Chapter1 {
 
         System.out.println(isPermutation("adelekan", "nakeleda"));
         System.out.println(formatURL("https://www.goo gle.com"));
+        System.out.println(isPalindrome2("Nurses run"));
     }
 
     /**
@@ -99,6 +103,89 @@ public class Chapter1 {
             builder.append(value);
         }
         return builder.toString();
+    }
+
+    /**
+     * Buggy solution to the palindrome permutation problem (1.4).
+     * This is an attempt to solve it without a data structure.
+     * Worst case time complexity: O(n).
+     *
+     * @param str - string to be checked.
+     * @return boolean - true if is a palindrome and false otherwise.
+     */
+    private static boolean isPalindrome(final String str) {
+        boolean foundLoneChar = false;
+        int count = 0;
+        char currentChar;
+
+        final char[] strChars = str.toLowerCase().toCharArray();
+        Arrays.sort(strChars);
+
+        System.out.println(strChars);
+
+        currentChar = strChars[0];
+        count++;
+
+        for (int i = 1; i < strChars.length; i++) {
+            if (strChars[i] != ' ') {
+                if (strChars[i] == currentChar) {
+                    count++;
+                    currentChar = strChars[i];
+                    continue;
+                }
+                if (count % 2 == 1 && !foundLoneChar) {
+                    foundLoneChar = true;
+                } else if (count % 2 == 1 && foundLoneChar) {
+                    return false;
+                }
+                currentChar = strChars[i];
+                count = 1;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Working solution to the palindrome permutation problem (1.4).
+     * Worst case time complexity: O(n).
+     *
+     * @param str - string to be checked.
+     * @return boolean - true if is a palindrome and false otherwise.
+     */
+    private static boolean isPalindrome2(final String str) {
+        if (str.length() == 1 && !str.equals(" ")) {
+            return true;
+        }
+
+        final char[] array = str.toLowerCase().toCharArray();
+        HashMap<Character, Integer> map = getCharacterMap(array);
+        AtomicInteger oddCount = new AtomicInteger(0);
+
+        map.forEach((key, val) -> {
+            if (val % 2 == 1) {
+                oddCount.set(oddCount.get() + 1);
+            }
+        });
+        return !(oddCount.get() > 1);
+    }
+
+    private static HashMap<Character, Integer> getCharacterMap(final char[] array) {
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        IntStream.range(0, array.length).forEach(index -> {
+            char key = array[index];
+
+            if (key != ' ') {
+                if (!map.containsKey(key)) {
+                    map.put(key, 1);
+                    return;
+                }
+                int count = map.get(key);
+
+                map.put(key, ++count);
+            }
+        });
+        return map;
     }
 
     /**
