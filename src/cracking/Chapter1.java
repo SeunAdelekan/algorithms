@@ -9,10 +9,11 @@ import java.util.HashSet;
 public class Chapter1 {
 
     public static void main(String[] args) {
-//        System.out.println(uniqueCharacterString("#abcde"));
-//        System.out.println(uniqueCharacterString2("#abcde"));
+        System.out.println(uniqueCharacterString("#abcde"));
+        System.out.println(uniqueCharacterString2("#abcde"));
 
         System.out.println(isPermutation("adelekan", "nakeleda"));
+        System.out.println(formatURL("https://www.goo gle.com"));
     }
 
     /**
@@ -76,6 +77,28 @@ public class Chapter1 {
         Arrays.sort(array2);
 
         return Arrays.equals(array1, array2);
+    }
+
+    /**
+     * Solution to interview question 1.3
+     * Worst case time complexity: O(n).
+     *
+     * @param url - url to be formatted.
+     * @return String - formatted url.
+     */
+    private static String formatURL(final String url) {
+        final StringBuilder builder = new StringBuilder();
+
+        for (int i = 0; i < url.length(); i++) {
+            char value = url.charAt(i);
+
+            if (value == ' ') {
+                builder.append("%20");
+                continue;
+            }
+            builder.append(value);
+        }
+        return builder.toString();
     }
 
     /**
