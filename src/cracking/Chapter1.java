@@ -1,10 +1,10 @@
 package cracking;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * Solutions to Cracking the Coding Interview questions on Chapter 1: Arrays and Strings
@@ -18,6 +18,7 @@ public class Chapter1 {
         System.out.println(isPermutation("adelekan", "nakeleda"));
         System.out.println(formatURL("https://www.goo gle.com"));
         System.out.println(isPalindrome2("Nurses run"));
+        System.out.println(oneAway("pale", "bake"));
     }
 
     /**
@@ -110,6 +111,8 @@ public class Chapter1 {
      * This is an attempt to solve it without a data structure.
      * Worst case time complexity: O(n).
      *
+     * TODO Debug and finish method.
+     *
      * @param str - string to be checked.
      * @return boolean - true if is a palindrome and false otherwise.
      */
@@ -167,6 +170,55 @@ public class Chapter1 {
             }
         });
         return !(oddCount.get() > 1);
+    }
+
+    /**
+     * Solution to interview question 1.5
+     * Worst case time complexity: O(n).
+     *
+     * @param str1 - comparing string.
+     * @param str2 - compared.
+     * @return boolean - true if str2 can be converted to str1 in a change or less.
+     */
+    private static boolean oneAway(final String str1, final String str2) {
+        if (str2.equals("") && str1.length() > 1) {
+            return false;
+        }
+
+        int changes = 0;
+        final char[] array1 = str1.toCharArray();
+        final char[] array2 = str2.toCharArray();
+
+        Arrays.sort(array1);
+        Arrays.sort(array2);
+        final List<Character> list = toCharacterList(array2);
+
+        for (int i = 0; i < array1.length; i++) {
+            if (i > list.size() - 1) {
+                list.add(array1[i]);
+                continue;
+            }
+            char current = list.get(i);
+
+            if (!(array1[i] == current)) {
+                if (array1[i] < current) {
+                    list.add(i, array1[i]);
+                } else if (array1[i] > current) {
+                    list.remove(i);
+                }
+                changes++;
+            }
+        }
+        return changes <= 1;
+    }
+
+    private static List<Character> toCharacterList(final char[] array) {
+        final List<Character> list = new ArrayList<>();
+
+        for (char c : array) {
+            list.add(c);
+        }
+        return list;
     }
 
     private static HashMap<Character, Integer> getCharacterMap(final char[] array) {
