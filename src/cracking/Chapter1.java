@@ -9,8 +9,10 @@ import java.util.HashSet;
 public class Chapter1 {
 
     public static void main(String[] args) {
-        System.out.println(uniqueCharacterString("#abcde"));
-        System.out.println(uniqueCharacterString2("#abcde"));
+//        System.out.println(uniqueCharacterString("#abcde"));
+//        System.out.println(uniqueCharacterString2("#abcde"));
+
+        System.out.println(isPermutation("adelekan", "nakeleda"));
     }
 
     /**
@@ -59,7 +61,25 @@ public class Chapter1 {
     }
 
     /**
-     * Modified binary search algorithm to find the number of occurences of a char.
+     * Solution to interview question 1.2
+     * Worst case time complexity: O(n).
+     *
+     * @param str1 - first string.
+     * @param str2 - second string.
+     * @return boolean
+     */
+    private static boolean isPermutation(final String str1, final String str2) {
+        final char[] array1 = str1.toCharArray();
+        final char[] array2 = str2.toCharArray();
+
+        Arrays.sort(array1);
+        Arrays.sort(array2);
+
+        return Arrays.equals(array1, array2);
+    }
+
+    /**
+     * Modified binary search algorithm to find the number of occurrences of a char.
      * Note: This implementation only guarantees the discovery of characters occurring up to
      * two times.
      *
