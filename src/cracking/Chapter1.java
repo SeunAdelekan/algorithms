@@ -19,6 +19,8 @@ public class Chapter1 {
         System.out.println(oneAway("pale", "bake"));
 
         System.out.println(stringCompression("paleeeeeeee"));
+        System.out.println(Arrays.deepToString(new int[][]{{1, 2}, {5, 6}}));
+        System.out.println(Arrays.deepToString(rotateMatrix(new int[][]{{1, 2}, {5, 6}})));
     }
 
     /**
@@ -243,9 +245,35 @@ public class Chapter1 {
             count++;
         }
         final String runLengthEncodedStr = builder.toString();
-        System.out.println(runLengthEncodedStr);
 
         return runLengthEncodedStr.length() < str.length() ? runLengthEncodedStr.length() : str.length();
+    }
+
+    /**
+     * Solution to interview question 1.6.
+     * TODO: Debug solution.
+     * Worst case time complexity: O(n).
+     *
+     * @param matrix - matrix to be rotated.
+     * @return
+     */
+    private static int[][] rotateMatrix(final int[][] matrix) {
+        if (matrix.length == 0) {
+            return matrix;
+        }
+        int n = matrix[0].length;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n / 2; j++) {
+                int temp = matrix[i][j];
+                int x = n - 1 - i;
+                int y = n - 1 - j;
+
+                matrix[i][j] = matrix[x][y];
+                matrix[x][y] = temp;
+            }
+        }
+        return matrix;
     }
 
     private static List<Character> toCharacterList(final char[] array) {
