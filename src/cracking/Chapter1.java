@@ -2,6 +2,7 @@ package cracking;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
 import java.util.stream.IntStream;
 
 /**
@@ -274,6 +275,10 @@ public class Chapter1 {
             }
         }
         return matrix;
+    }
+
+    private static void zeroMatrix(final Function<String, Integer> f) {
+        int res = f.apply("Hello");
     }
 
     private static List<Character> toCharacterList(final char[] array) {
