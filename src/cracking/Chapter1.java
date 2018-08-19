@@ -2,9 +2,7 @@ package cracking;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 /**
  * Solutions to Cracking the Coding Interview questions on Chapter 1: Arrays and Strings
@@ -12,6 +10,7 @@ import java.util.stream.Stream;
 public class Chapter1 {
 
     public static void main(String[] args) {
+        System.out.println("\033[0;36m");
         System.out.println(uniqueCharacterString("#abcde"));
         System.out.println(uniqueCharacterString2("#abcde"));
 
@@ -19,6 +18,9 @@ public class Chapter1 {
         System.out.println(formatURL("https://www.goo gle.com"));
         System.out.println(isPalindrome2("Nurses run"));
         System.out.println(oneAway("pale", "bake"));
+        System.out.println(isRotation("waterbottle", "erbottlewat"));
+
+        System.out.println("\u001B[0m");
     }
 
     /**
@@ -210,6 +212,53 @@ public class Chapter1 {
             }
         }
         return changes <= 1;
+    }
+
+    /**
+     * Solution to interview question 1.9.
+     * Worst case time complexity: O(1).
+     *
+     * @param str1 - first string
+     * @param str2 - second string to be checked.
+     * @return boolean - true if str2 is a rotation of str1 and false otherwise.
+     */
+    private static boolean isRotation(final String str1, final String str2) {
+        if (str2.length() > str1.length() || str1.length() == 0 || !isSubString(str1, str2)) {
+            return false;
+        }
+        return str1.length() == str2.length();
+    }
+
+    /**
+     * Checks if a string is a substring of another.
+     * Worst case time complexity: O(n).
+     *
+     * @param str1 - first string.
+     * @param str2 - second string.
+     * @return true if str2 is a substring of str2 and false otherwise.
+     */
+    private static boolean isSubString(final String str1, final String str2) {
+        final HashMap<Character, Integer> map = new HashMap<>();
+        final char[] array1 = str1.toCharArray();
+        final char[] array2 = str2.toCharArray();
+
+        for (char c : array1) {
+            if (!map.containsKey(c)) {
+                map.put(c, 1);
+                continue;
+            }
+            int value = map.get(c);
+            map.put(c, ++value);
+        }
+
+        for (char c : array2) {
+            if (!(map.containsKey(c) && map.get(c) > 0)) {
+                return false;
+            }
+            int value = map.get(c);
+            map.put(c, --value);
+        }
+        return true;
     }
 
     private static List<Character> toCharacterList(final char[] array) {
