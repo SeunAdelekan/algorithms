@@ -1,7 +1,5 @@
 package cracking;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
 
@@ -22,6 +20,7 @@ public class Chapter2 {
     }
 
     /**
+     * Solution to interview question 2.1.
      * Removes duplicate values from a linked list.
      * Worst case time complexity: O(n).
      *
