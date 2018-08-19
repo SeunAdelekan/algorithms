@@ -280,10 +280,6 @@ public class Chapter1 {
         return matrix;
     }
 
-    private static void zeroMatrix(final Function<String, Integer> f) {
-        int res = f.apply("Hello");
-    }
-
     /**
      * Solution to interview question 1.9.
      * Worst case time complexity: O(1).
