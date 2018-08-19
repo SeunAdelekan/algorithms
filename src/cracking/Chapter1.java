@@ -18,6 +18,10 @@ public class Chapter1 {
         System.out.println(formatURL("https://www.goo gle.com"));
         System.out.println(isPalindrome2("Nurses run"));
         System.out.println(oneAway("pale", "bake"));
+
+        System.out.println(stringCompression("paleeeeeeee"));
+        System.out.println(Arrays.deepToString(new int[][]{{1, 2}, {5, 6}}));
+        System.out.println(Arrays.deepToString(rotateMatrix(new int[][]{{1, 2}, {5, 6}})));
         System.out.println(isRotation("waterbottle", "erbottlewat"));
 
         System.out.println("\u001B[0m");
@@ -212,6 +216,72 @@ public class Chapter1 {
             }
         }
         return changes <= 1;
+    }
+
+    /**
+     * Solution to interview question 1.6.
+     * Worst case time complexity: O(n)
+     *
+     * @param str - string to be compressed.
+     * @return int
+     */
+    private static int stringCompression(final String str) {
+        if (str.length() == 0 || str.length() == 1) {
+            return str.length();
+        }
+
+        int count = 1;
+        char previous = str.charAt(0);
+        final StringBuilder builder = new StringBuilder();
+
+        for (int i = 1; i < str.length(); i++) {
+            char current = str.charAt(i);
+
+            if (!(current == previous) || i == str.length() - 1) {
+                if (current == previous) {
+                    count++;
+                }
+                builder.append(previous).append(String.valueOf(count));
+                previous = current;
+                count = 1;
+                continue;
+            }
+            count++;
+        }
+        final String runLengthEncodedStr = builder.toString();
+
+        return runLengthEncodedStr.length() < str.length() ? runLengthEncodedStr.length() : str.length();
+    }
+
+    /**
+     * Solution to interview question 1.6.
+     * TODO: Debug solution.
+     * Worst case time complexity: O(n).
+     *
+     * @param matrix - matrix to be rotated.
+     * @return
+     */
+    private static int[][] rotateMatrix(final int[][] matrix) {
+        if (matrix.length == 0) {
+            return matrix;
+        }
+        int n = matrix[0].length;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n / 2; j++) {
+                int temp = matrix[i][j];
+                int x = n - 1 - i;
+                int y = n - 1 - j;
+
+                matrix[i][j] = matrix[x][y];
+                matrix[x][y] = temp;
+            }
+        }
+        return matrix;
+    }
+
+    private static void zeroMatrix(final Function<String, Integer> f) {
+        int res = f.apply("Hello");
     }
 
     /**
