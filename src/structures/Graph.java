@@ -22,6 +22,32 @@ public class Graph<T> {
     }
 
     /**
+     * Depth first search algorithm implementation.
+     *
+     * @param node - current node being searched.
+     * @param value - value being searched for.
+     * @return Node - result node if one exists and null otherwise.
+     */
+    private Node<T> DFS(final Node<T> node, final T value) {
+        if (node != null) {
+            node.visited = true;
+
+            if (node.getValue() == value) {
+                return node;
+            }
+
+            for (Node<T> branchNode : node.getChildren()) {
+                Node<T> res = DFS(branchNode, value);
+
+                if (res != null) {
+                    return res;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
      * Class modelling graph nodes.
      *
      * @param <U> - the type of value held within the node.
@@ -30,6 +56,7 @@ public class Graph<T> {
 
         private U value;
         private List<Node<U>> children;
+        private boolean visited = false;
 
         void addChild(final Node<U> node) {
             children.add(node);
