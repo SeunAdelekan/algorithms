@@ -9,6 +9,12 @@ public class ThirtyDaysOfCode {
         binaryNumbers(439);
     }
 
+    /**
+     * Solution to Binary Numbers problem.
+     * Worst case time complexity: O(n + m).
+     *
+     * @param n - the number to be converted to binary.
+     */
     private static void binaryNumbers(int n) {
         int count = 0;
         int maxCount = 0;

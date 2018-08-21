@@ -13,6 +13,7 @@ public class PoisonousPlants {
         System.out.println(poisonousPlants(new int[] { 6, 5, 8, 4, 7, 10, 9 }));
     }
 
+
     private static int poisonousPlants(final int[] arr) {
         int day = 0;
         boolean deathsPossible = true;
