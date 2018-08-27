@@ -11,16 +11,21 @@ import java.util.TreeMap;
 public class MinimumSwaps2 {
 
     public static void main(String[] args) {
-        System.out.println(minimumSwaps(new int[] { 7, 1, 3, 2, 4, 5, 6 }));
+        System.out.println(minimumSwaps(new int[] { 0, 0, 0, 0 }));
     }
 
+    /**
+     * Solution to Minimum Swaps 2 problem.
+     * Worst case time complexity: O(m * n)
+     *
+     * @param arr - data set.
+     * @return int - minimum number of swaps required to sort the array.
+     */
     private static int minimumSwaps(final int[] arr) {
         int index = 0;
         int swapCount = 0;
         final TreeMap<Integer, List<Integer>> valueMap = getValueMap(arr);
         final List<Map.Entry<Integer, List<Integer>>> entries = new ArrayList<>(valueMap.entrySet());
-
-        System.out.println(entries);
 
         for (Map.Entry<Integer, List<Integer>> entry : entries) {
             List<Integer> indices = entry.getValue();
@@ -61,7 +66,6 @@ public class MinimumSwaps2 {
             List<Integer> values = map.get(value);
             values.add(i);
         }
-        System.out.println(map);
         return map;
     }
 }
