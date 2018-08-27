@@ -1,4 +1,4 @@
-package hackerrank.interview.hackerrank;
+package hackerrank.interview;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
