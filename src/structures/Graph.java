@@ -2,6 +2,7 @@ package structures;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.LinkedList;
 
 /**
  * Graph data structure implementation utilizing adjacency
@@ -28,7 +29,7 @@ public class Graph<T> {
      * @param value - value being searched for.
      * @return Node - result node if one exists and null otherwise.
      */
-    private Node<T> DFS(final Node<T> node, final T value) {
+    public Node<T> DFS(final Node<T> node, final T value) {
         if (node != null) {
             node.visited = true;
 
@@ -41,6 +42,38 @@ public class Graph<T> {
 
                 if (res != null) {
                     return res;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Searches the current graph using breadth first search.
+     *
+     * @param node - current node being searched.
+     * @param value - value being searched for.
+     * @return
+     */
+    public Node<T> BFS(final Node<T> node, final T value) {
+        final List<Node<T>> queue = new LinkedList<>();
+
+        if (node != null) {
+            node.visited = true;
+        }
+        queue.add(node);
+
+        while (!queue.isEmpty()) {
+            Node<T> neighbour = queue.remove(0);
+
+            if (neighbour.getValue() == value) {
+                return neighbour;
+            }
+
+            for (Node<T> n : neighbour.getChildren()) {
+                if (!n.visited) {
+                    n.visited = true;
+                    queue.add(n);
                 }
             }
         }
