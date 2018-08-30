@@ -1,9 +1,6 @@
 package leetcode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author Iyanu Adelekan on 30/08/2018.
@@ -31,6 +28,7 @@ public class TwoSum {
             map.put(number, index);
             index++;
         }
+
         return result;
     }
 
