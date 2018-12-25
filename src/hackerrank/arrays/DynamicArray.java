@@ -49,10 +49,11 @@ public class DynamicArray {
 
     /**
      * Invoked to solve the dynamic array problem.
+     * Worst case time complexity: O(n).
      *
      * @param n - number of sequences.
      * @param queries - queries.
-     * @return
+     * @return list of calculated lastAnswers.
      */
     private static List<Integer> dynamicArray(final int n, final List<List<Integer>> queries) {
         final List<List<Integer>> sequenceList = new ArrayList<>();
