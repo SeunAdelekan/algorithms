@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.easy;
 
 /**
  * @author Iyanu Adelekan on 25/12/2018.
