@@ -1,7 +1,5 @@
 package hackerrank.challenges;
 
-import java.util.Arrays;
-
 /**
  * @author Iyanu Adelekan on 21/08/2018.
  */
