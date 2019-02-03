@@ -1,14 +1,13 @@
 package hackerrank.challenges;
 
-import java.util.Arrays;
-
 /**
  * @author Iyanu Adelekan on 21/08/2018.
  */
 public class ThirtyDaysOfCode {
 
     public static void main(String[] args) {
-        binaryNumbers(439);
+        System.out.println(binaryNumbers(2));
+        System.out.println(binaryNumbers(439));
     }
 
     /**
@@ -17,7 +16,7 @@ public class ThirtyDaysOfCode {
      *
      * @param n - the number to be converted to binary.
      */
-    private static void binaryNumbers(int n) {
+    private static String binaryNumbers(int n) {
         int count = 0;
         int maxCount = 0;
         StringBuilder binary = new StringBuilder();
@@ -41,7 +40,6 @@ public class ThirtyDaysOfCode {
             }
             count = 0;
         }
-        System.out.println(binary);
-        System.out.println(maxCount);
+        return binary.toString();
     }
 }
