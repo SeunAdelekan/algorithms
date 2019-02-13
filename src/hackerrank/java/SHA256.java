@@ -17,6 +17,7 @@ public class SHA256 {
             throw new RuntimeException(ex);
         }
     }
+
     private static String bytesToHex(byte[] bytes) {
         StringBuilder result = new StringBuilder();
 
