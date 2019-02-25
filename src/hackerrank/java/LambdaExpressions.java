@@ -7,6 +7,7 @@ public class LambdaExpressions {
 
     interface PerformOperation {
         boolean check(int a);
+
     }
 
     class MyMath {
