@@ -9,14 +9,21 @@ public class Encryption {
 
     public static void main(String[] args) {
         System.out.println(encryption("if man was meant to stay on the ground god would have given us roots"));
-        System.out.println(encryption("feedthedog"));
         System.out.println(encryption("haveaniceday"));
+        System.out.println(encryption("feedthedog"));
+        System.out.println(encryption("chillout"));
     }
 
     private static String encryption(final String s) {
         final String input = strip(s);
-        System.out.println(input);
-        int rows = (int) Math.floor(Math.sqrt(s.length()));
+        int rows;
+        double root = Math.sqrt(s.length());
+
+        if (Math.ceil(root) - root <= 0.5) {
+            rows = (int) Math.ceil(root);
+        } else {
+            rows = (int) Math.floor(Math.sqrt(s.length()));
+        }
         int columns = (int) Math.ceil(Math.sqrt(s.length()));
         final char[][] encryptionMatrix = new char[rows][columns];
 
@@ -27,13 +34,16 @@ public class Encryption {
             encryptionMatrix[row][column] = input.charAt(i);
             column++;
 
-            if (column == columns - 1) {
+            if (column == columns) {
                 row++;
                 column = 0;
             }
-            if (row == rows - 1) {
+            if (row == rows) {
                 break;
             }
+        }
+        for (int i = 0; i < rows; i++) {
+            System.out.println(encryptionMatrix[i]);
         }
         return generateEncryptedString(encryptionMatrix, rows, columns);
     }
@@ -45,7 +55,9 @@ public class Encryption {
         int column = 0;
 
         while (row < rows) {
-            builder.append(array[row][column]);
+            if (!(array[row][column] == '\u0000')) {
+                builder.append(array[row][column]);
+            }
             row++;
 
             if (row == rows && column < columns - 1) {

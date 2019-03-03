@@ -5,9 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-/**
- * Todo Finish up solution.
- */
 public class MinimumSwaps2 {
 
     public static void main(String[] args) {
